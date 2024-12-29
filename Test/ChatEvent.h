@@ -6,7 +6,7 @@
 #define CHATEVENT_H
 #include <string>
 
-#include "Event/Event.h"
+#include "../Event/Event.h"
 
 class ChatEvent : public Event {
 public:

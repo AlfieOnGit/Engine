@@ -1,6 +1,6 @@
 #include "Event/EventManager.h"
-#include "Game.h"
-#include "TestListener.h"
+#include "Test/Game.h"
+#include "Test/TestListener.h"
 using namespace std;
 
 int main()

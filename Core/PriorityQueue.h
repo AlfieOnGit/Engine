@@ -18,14 +18,14 @@ public:
 
 protected:
     unsigned short int* priority_pointers;
-    std::pmr::vector<T> vec;
+    std::vector<T> vec;
 };
 
 
 template<typename T>
 PriorityQueue<T>::PriorityQueue(unsigned short int const max_priority) {
     priority_pointers = new unsigned short int[max_priority] { 0 };
-    vec = std::pmr::vector<T>();
+    vec = std::vector<T>();
 }
 
 
