@@ -7,5 +7,6 @@
 #include <iostream>
 
 void TestListener::on_event(ChatEvent *e) {
-    std::cout << "Test class called!\n";
+    if (!e->is_cancelled()) std::cout << "Event called! Message: " << e->get_message() << '\n';
+    else std::cout << "Event cancelled!\n";
 }

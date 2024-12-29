@@ -6,9 +6,9 @@
 #define CHATEVENT_H
 #include <string>
 
-#include "../Event/Event.h"
+#include "../Event/CancellableEvent.h"
 
-class ChatEvent : public Event {
+class ChatEvent : public CancellableEvent {
 public:
     explicit ChatEvent(const std::string& message) { this->message = message; }
 

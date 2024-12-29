@@ -14,4 +14,5 @@ add_executable(Sandbox main.cpp
         Test/TestListener.cpp
         Test/TestListener.h
         Event/EventPriority.h
+        Event/CancellableEvent.h
 )
