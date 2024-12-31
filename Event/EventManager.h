@@ -13,7 +13,8 @@ using namespace std;
 
 #define QUEUE PriorityQueue<EventListener<E>*>
 
-class EventManager {
+class EventManager
+{
 public:
     template <typename E> static void call(E* e);
     template <typename E> static void register_listener(EventListener<E>* listener, EventPriority priority = NORMAL);
@@ -27,13 +28,15 @@ template <typename E> QUEUE EventManager::listeners = QUEUE(EARLY);
 
 
 template<typename E>
-void EventManager::call(E *e) {
+void EventManager::call(E *e)
+{
     for (int i = 0; i < listeners<E>.get_length(); i++) listeners<E>.get(i)->on_event(e);
 }
 
 
 template<typename E>
-void EventManager::register_listener(EventListener<E> *listener, EventPriority priority) {
+void EventManager::register_listener(EventListener<E> *listener, EventPriority priority)
+{
     listeners<E>.add(listener, priority);
 }
 

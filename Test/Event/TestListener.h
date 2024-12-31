@@ -7,7 +7,8 @@
 #include "ChatEvent.h"
 #include "../../Event/EventListener.h"
 
-class TestListener : public EventListener<ChatEvent> {
+class TestListener : public EventListener<ChatEvent>
+{
     void on_event(ChatEvent *e) override;
 };
 

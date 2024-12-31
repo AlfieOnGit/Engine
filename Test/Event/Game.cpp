@@ -6,7 +6,8 @@
 
 #include <iostream>
 
-void Game::on_event(ChatEvent* e) {
+void Game::on_event(ChatEvent* e)
+{
     std::cout << "Message: " << e->get_message() << '\n';
     std::cout << "Now cancelling the event!\n";
     e->set_cancelled(true);

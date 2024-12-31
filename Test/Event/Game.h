@@ -8,7 +8,8 @@
 #include "../../Event/EventListener.h"
 
 
-class Game final : public EventListener<ChatEvent> {
+class Game final : public EventListener<ChatEvent>
+{
 public:
     void on_event(ChatEvent* e) override;
 };

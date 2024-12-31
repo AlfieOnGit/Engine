@@ -6,7 +6,8 @@
 #define EVENTPRIORITY_H
 #include <cstdint>
 
-enum EventPriority : uint8_t {
+enum EventPriority : uint8_t
+{
     MONITOR,
     LATE,
     NORMAL,

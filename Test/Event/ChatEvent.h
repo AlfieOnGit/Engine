@@ -8,7 +8,8 @@
 
 #include "../../Event/CancellableEvent.h"
 
-class ChatEvent : public CancellableEvent {
+class ChatEvent : public CancellableEvent
+{
 public:
     explicit ChatEvent(const std::string& message) { this->message = message; }
 
