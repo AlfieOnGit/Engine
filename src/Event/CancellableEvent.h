@@ -1,5 +1,5 @@
 //
-// Created by Alfie Watkins on 30/12/2024.
+// Created by Alfie on 30/12/2024.
 //
 
 #ifndef CANCELLABLEEVENT_H
