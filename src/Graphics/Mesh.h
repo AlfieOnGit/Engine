@@ -19,11 +19,16 @@ public:
 
     void fill_buffer() const;
 
+    void set_colour(Vector4<float> const colour) { this->colour = colour; }
+    [[nodiscard]] Vector4<float> get_colour() const { return colour; }
+
 protected:
     int vertex_count = 0;
     GLfloat* vertices = nullptr;
     GLuint array_object = 0;
     GLuint buffer_object = 0;
+
+    Vector4<float> colour = Vector4<float>();
 };
 
 #endif //MESH_H

@@ -22,6 +22,8 @@ public:
     T& operator[] (int i) { return values[i]; }
     T& operator[] (Axis coord) { return values[coord]; }
 
+    T* get_data() { return values; }
+
 protected:
     Vector() = default;
 

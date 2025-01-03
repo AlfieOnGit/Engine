@@ -3,6 +3,8 @@
 //
 
 #include "GraphicsEngine2D.h"
+
+#include <iostream>
 #include <string>
 
 GraphicsEngine2D::GraphicsEngine2D()
@@ -22,7 +24,12 @@ void GraphicsEngine2D::update()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shader->get_program());
-    for (Mesh* m : objects) m->draw();
+    for (const Mesh* m : objects)
+    {
+        glUniform4fv(glGetUniformLocation(shader->get_program(), "colour"),
+            1, m->get_colour().get_data());
+        m->draw();
+    }
     glfwSwapBuffers(window);
     glfwPollEvents();
 }
