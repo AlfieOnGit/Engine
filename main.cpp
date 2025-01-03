@@ -12,6 +12,7 @@ int main()
         return -1;
     }
 
+    // Red triangle
     Mesh* triangle = Mesh::generate_triangle(
         Vector3(-0.5f, -0.5f, 1.0f), // Lower left corner
         Vector3(0.5f, -0.5f, 1.0f), // Lower right corner
@@ -19,6 +20,7 @@ int main()
     triangle->set_colour(Vector4(1.0f, 0.0f, 0.0f, 0.5f));
     engine.add_mesh(triangle, 0);
 
+    // Blue triangle
     Mesh* triangle2 = Mesh::generate_triangle(
         Vector3(-0.5f, 0.5f, 0.0f), // Upper left corner
         Vector3(0.5f, 0.5f, 0.0f), // Upper right corner
