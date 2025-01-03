@@ -19,8 +19,8 @@ template <typename T, uint32_t n>
 class Vector
 {
 public:
-    T& operator[] (int i) { return values[i]; }
-    T& operator[] (Axis coord) { return values[coord]; }
+    [[nodiscard]] T& operator[] (int i) { return values[i]; }
+    [[nodiscard]] T& operator[] (Axis coord) { return values[coord]; }
 
     T* get_data() { return values; }
 

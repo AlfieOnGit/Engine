@@ -30,7 +30,7 @@ template <typename E> QUEUE EventManager::listeners = QUEUE(EARLY);
 template<typename E>
 void EventManager::call(E *e)
 {
-    for (int i = 0; i < listeners<E>.get_length(); i++) listeners<E>.get(i)->on_event(e);
+    for (int i = 0; i < listeners<E>.get_length(); i++) listeners<E>[i]->on_event(e);
 }
 
 

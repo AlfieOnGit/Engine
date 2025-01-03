@@ -11,10 +11,12 @@ template <typename T> class PriorityQueue
 public:
     explicit PriorityQueue(unsigned short int max_priority);
     ~PriorityQueue();
+    [[nodiscard]] T operator[] (int const i) const { return get(i); }
 
     void add(T item, unsigned short int priority, bool at_end = true);
 
     [[nodiscard]] T get(unsigned int index) const { return vec.at(index); }
+    [[nodiscard]] std::vector<T> get_values() const { return vec; }
     [[nodiscard]] unsigned int get_length() const { return vec.size(); }
 
 protected:

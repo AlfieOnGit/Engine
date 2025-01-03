@@ -24,7 +24,7 @@ void GraphicsEngine2D::update()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shader->get_program());
-    for (const Mesh* m : objects)
+    for (const Mesh* m : objects.get_values())
     {
         glUniform4fv(glGetUniformLocation(shader->get_program(), "colour"),
             1, m->get_colour().get_data());

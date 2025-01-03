@@ -9,11 +9,7 @@
 
 GraphicsEngine::GraphicsEngine()
 {
-    if (!glfwInit())
-    {
-        std::cout << "GLFW failed!\n";
-        return;
-    }
+    if (!glfwInit()) return;
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -34,6 +30,8 @@ GraphicsEngine::~GraphicsEngine()
 
 void GraphicsEngine::start()
 {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
     while (!glfwWindowShouldClose(window))
     {
         update();
