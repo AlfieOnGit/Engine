@@ -3,11 +3,11 @@ project(Engine)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include_directories(${PROJECT_SOURCE_DIR}/Dependencies/include)
-link_directories(${PROJECT_SOURCE_DIR}/Dependencies/lib)
+include_directories(Dependencies/Apple/include)
+link_directories(Dependencies/Apple/lib)
 
 add_executable(Engine main.cpp
-        Dependencies/src/glad.c
+        Dependencies/Apple/src/glad.c
         src/Core/PriorityQueue.h
         src/Event/CancellableEvent.h
         src/Event/Event.h
@@ -30,9 +30,23 @@ add_executable(Engine main.cpp
         src/Graphics/GraphicsEngine.h
 )
 
-include_directories(Dependencies/include)
-find_package(glfw3 3.4 REQUIRED)
+#include_directories(Dependencies/Apple/include)
+add_subdirectory(Dependencies/src/glfw-3.4)
+#find_package(glfw3 3.4 REQUIRED)
 target_link_libraries(Engine glfw)
 
 find_package(OpenGL REQUIRED)
 target_link_libraries(Engine OpenGL::GL)
+
+#if (WIN32)
+#    message("You're using Windows!")
+#endif ()
+
+#if (APPLE)
+#    include_directories(Dependencies/Apple/include)
+#    find_package(glfw3 3.4 REQUIRED)
+#    target_link_libraries(Engine glfw)
+#
+#    find_package(OpenGL REQUIRED)
+#    target_link_libraries(Engine OpenGL::GL)
+#endif ()
