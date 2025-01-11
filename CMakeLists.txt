@@ -4,9 +4,6 @@ project(Engine)
 set(CMAKE_CXX_STANDARD 23)
 
 include_directories(Dependencies/include)
-#include_directories(Dependencies/src/glad)
-#include_directories(Dependencies/src/KHR)
-#link_directories(Dependencies/Apple/lib)
 
 add_executable(Engine main.cpp
         Dependencies/src/glad/glad.c
