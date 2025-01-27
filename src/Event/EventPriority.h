@@ -8,9 +8,9 @@
 
 enum EventPriority : uint8_t
 {
-    MONITOR,
+    MONITOR, // Events should NOT be cancelled or edited when listened to by this priority
     LATE,
-    NORMAL,
+    DEFAULT,
     EARLY
 };
 
