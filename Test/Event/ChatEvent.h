@@ -13,7 +13,7 @@ class ChatEvent : public CancellableEvent
 public:
     explicit ChatEvent(const std::string& message) { this->message = message; }
 
-    std::string get_message() { return message; }
+    [[nodiscard]] std::string get_message() const { return message; }
 
 protected:
     std::string message;
