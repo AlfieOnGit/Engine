@@ -30,6 +30,9 @@ add_executable(Engine main.cpp
         src/scene/Scene.h
         src/scene/SceneManager.cpp
         src/scene/SceneManager.h
+        test/scene/TestScene.cpp
+        test/scene/TestScene.h
+        test/scene/SceneTest.cpp
 )
 
 add_subdirectory(dependencies/src/glfw-3.4)
