@@ -17,10 +17,9 @@ public:
      * scenes respectively.
      * @param scene Target Scene (or NULLPTR if you want a black screen for some reason)
      */
-    static void set_current(Scene* scene);
+    static inline void set_current(Scene* scene);
 
     /**
-     * Gets the current scene.
      * @return Current Scene pointer or NULLPTR if not set
      */
     static Scene* get_current() { return current; }
@@ -44,6 +43,10 @@ public:
 private:
     static Scene* current;
 
+    /**
+     * Static singleton instance: Each scene type can store 1 instance (the singleton) in this variable
+     * @tparam S Scene type (child class)
+     */
     template <typename S>
     static S* scene_instance;
 };

@@ -11,7 +11,7 @@ public:
     /**
      * @param name String unique name - Keep them unique or the manager will not understand
      */
-    explicit Scene(std::pmr::string const name) { this->name = name; }
+    explicit Scene(std::pmr::string const& name) { this->name = name; }
 
     bool operator==(const Scene& second) const { return this->name == second.name; }
 
