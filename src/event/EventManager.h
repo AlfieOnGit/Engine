@@ -7,7 +7,7 @@
 
 #include "EventListener.h"
 #include "EventPriority.h"
-#include "../Core/PriorityQueue.h"
+#include "../core/PriorityQueue.h"
 
 using namespace std;
 

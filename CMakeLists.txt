@@ -3,33 +3,36 @@ project(Engine)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include_directories(Dependencies/include)
+include_directories(dependencies/include)
 
 add_executable(Engine main.cpp
-        Dependencies/src/glad/glad.c
-        src/Core/PriorityQueue.h
-        src/Event/CancellableEvent.h
-        src/Event/Event.h
-        src/Event/EventListener.h
-        src/Event/EventManager.h
-        src/Event/EventPriority.h
-        src/Graphics/Shader.cpp
-        src/Graphics/Shader.h
-        Test/Event/ChatEvent.h
-        Test/Event/Game.cpp
-        Test/Event/Game.h
-        Test/Event/TestListener.cpp
-        Test/Event/TestListener.h
-        src/Graphics/Mesh.cpp
-        src/Graphics/Mesh.h
-        src/Core/Vector.h
-        src/Graphics/2D/GraphicsEngine2D.cpp
-        src/Graphics/2D/GraphicsEngine2D.h
-        src/Graphics/GraphicsEngine.cpp
-        src/Graphics/GraphicsEngine.h
+        dependencies/src/glad/glad.c
+        src/core/PriorityQueue.h
+        src/event/CancellableEvent.h
+        src/event/Event.h
+        src/event/EventListener.h
+        src/event/EventManager.h
+        src/event/EventPriority.h
+        src/graphics/Shader.cpp
+        src/graphics/Shader.h
+        test/event/ChatEvent.h
+        test/event/Game.cpp
+        test/event/Game.h
+        test/event/TestListener.cpp
+        test/event/TestListener.h
+        src/graphics/Mesh.cpp
+        src/graphics/Mesh.h
+        src/core/Vector.h
+        src/graphics/2D/GraphicsEngine2D.cpp
+        src/graphics/2D/GraphicsEngine2D.h
+        src/graphics/GraphicsEngine.cpp
+        src/graphics/GraphicsEngine.h
+        src/scene/Scene.h
+        src/scene/SceneManager.cpp
+        src/scene/SceneManager.h
 )
 
-add_subdirectory(Dependencies/src/glfw-3.4)
+add_subdirectory(dependencies/src/glfw-3.4)
 target_link_libraries(Engine glfw)
 
 find_package(OpenGL REQUIRED)

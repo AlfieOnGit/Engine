@@ -6,7 +6,7 @@
 #define MESH_H
 #include <glad/glad.h>
 
-#include "../Core/Vector.h"
+#include "../core/Vector.h"
 
 class Mesh {
 public:
