@@ -12,6 +12,7 @@ namespace SceneTest {
     inline void static_set() {
         auto ts = TestScene("Hello");
         SceneManager::set(&ts);
-        std::cout << "The scene is called: " << SceneManager::get<TestScene>()->get_name();
+        SceneManager::set_current_to_instance<TestScene>();
+        std::cout << "The scene is called: " << SceneManager::get_current()->get_name();
     }
 }
