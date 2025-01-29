@@ -6,24 +6,18 @@
 
 #include <iostream>
 
-TestScene::TestScene() : Scene("TestScene") { }
-
-TestScene::TestScene(const std::pmr::string& unique_name) : Scene(unique_name) { }
-
-
-
 void TestScene::on_load() {
-    std::cout << name << " loaded!\n";
+    std::cout <<"Test Scene loaded with message:" << message << '\n';
 }
 
 
 void TestScene::update(float const dt) {
-    std::cout << name << " DT: " << dt << '\n';
+    std::cout << "Test scene DT: " << dt << '\n';
 }
 
 
 void TestScene::on_unload() {
-    std::cout << name << " unloaded!\n";
+    std::cout << "Test scene unloaded!\n";
 }
 
 
