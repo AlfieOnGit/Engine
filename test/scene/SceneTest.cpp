@@ -12,7 +12,7 @@ namespace SceneTest {
         SceneManager::set(&ts);
         SceneManager::set_current_to_instance<TestScene>();
 
-        for (int i = 0; i < 5; i++) SceneManager::get_current()->update(i);
+        for (int i = 0; i < 5; i++) SceneManager::get_current()->update(static_cast<float>(i));
 
         SceneManager::set_current(nullptr);
     }
