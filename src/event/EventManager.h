@@ -5,13 +5,13 @@
 #ifndef EVENTMANAGER_H
 #define EVENTMANAGER_H
 
+#define QUEUE PriorityQueue<EventListener<E>*>
+
 #include "EventListener.h"
 #include "EventPriority.h"
 #include "../core/PriorityQueue.h"
 
 using namespace std;
-
-#define QUEUE PriorityQueue<EventListener<E>*>
 
 /**
  * A static class that holds pointers to EventListeners and calls their OnEvent() functions when an Event is called.

@@ -8,6 +8,9 @@
 /**
  * Base class for all events.
  */
+/**
+ * Base class for all events
+ */
 class Event { };
 
 
