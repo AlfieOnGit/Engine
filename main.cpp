@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "src/graphics/2D/GraphicsEngine2D.h"
+#include "graphics/2D/GraphicsEngine2D.h"
 
 int main()
 {
