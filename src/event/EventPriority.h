@@ -4,6 +4,7 @@
 
 #ifndef EVENTPRIORITY_H
 #define EVENTPRIORITY_H
+
 #include <cstdint>
 
 enum EventPriority : uint8_t

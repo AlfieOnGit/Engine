@@ -5,9 +5,8 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-/**
- * Base class for all events.
- */
+#include <type_traits>
+
 /**
  * Base class for all events
  */
