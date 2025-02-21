@@ -13,29 +13,40 @@ using namespace std;
 
 #define QUEUE PriorityQueue<EventListener<E>*>
 
+/**
+ * A static class that holds pointers to EventListeners and calls their OnEvent() functions when an Event is called.
+ */
 class EventManager
 {
 public:
-    template <typename E> static void call(E* e);
-    template <typename E> static void register_listener(EventListener<E>* listener, EventPriority priority = DEFAULT);
+    /**
+    * Invokes the OnEvent() functions of all registered listeners for this event type.
+    * @tparam E Event type (child class)
+    * @param e Event instance
+    */
+    template <EventType E>
+    static void call(E* e);
+
+    template <EventType E>
+    static void register_listener(EventListener<E>* listener, EventPriority priority = DEFAULT);
 
 protected:
-    template <typename E> static QUEUE listeners;
+    template <EventType E> static QUEUE listeners;
 };
 
 
 // EARLY because that's the highest value of the priority enum (i.e. the max)
-template <typename E> QUEUE EventManager::listeners = QUEUE(EARLY);
+template <EventType E> QUEUE EventManager::listeners = QUEUE(EARLY);
 
 
-template<typename E>
+template <EventType E>
 void EventManager::call(E *e)
 {
     for (int i = 0; i < listeners<E>.get_length(); i++) listeners<E>[i]->on_event(e);
 }
 
 
-template<typename E>
+template <EventType E>
 void EventManager::register_listener(EventListener<E> *listener, EventPriority priority)
 {
     listeners<E>.add(listener, priority);

@@ -8,7 +8,6 @@ include_directories(dependencies/include)
 add_executable(Engine main.cpp
         dependencies/src/glad/glad.c
         src/core/PriorityQueue.h
-        src/event/CancellableEvent.h
         src/event/Event.h
         src/event/EventListener.h
         src/event/EventManager.h
