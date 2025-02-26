@@ -6,7 +6,7 @@
 #define VECTOR_H
 #include <cstdint>
 
-enum Axis
+enum Axis : uint8_t
 {
     x,
     y,
@@ -15,14 +15,14 @@ enum Axis
 };
 
 
-template <typename T, uint32_t n>
+template <typename T, uint8_t n>
 class Vector
 {
 public:
-    [[nodiscard]] T& operator[] (int i) { return values[i]; }
-    [[nodiscard]] T& operator[] (Axis coord) { return values[coord]; }
+    [[nodiscard]] T& operator[](int i) const { return values[i]; }
+    [[nodiscard]] T& operator[] (Axis coord) const { return values[coord]; }
 
-    T* get_data() { return values; }
+    T* get_data() const { return values; }
 
 protected:
     Vector() = default;
