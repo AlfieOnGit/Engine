@@ -1,74 +1,68 @@
 //
-// Created by Alfie on 02/01/2025.
+// Contributors: Alfie
 //
 
 #ifndef VECTOR_H
 #define VECTOR_H
+
 #include <cstdint>
+#include <type_traits>
 
-enum Axis : uint8_t
-{
-    x,
-    y,
-    z,
-    w
-};
-
+#include "Axis.h"
 
 template <typename T, uint8_t n>
 class Vector
 {
 public:
-    [[nodiscard]] T& operator[](int i) const { return values[i]; }
-    [[nodiscard]] T& operator[] (Axis coord) const { return values[coord]; }
-
-    T* get_data() const { return values; }
-
-protected:
     Vector() = default;
 
-    void fill(T values[n]) { for (int i = 0; i < n; i++) this->values[i] = values[i]; }
+    template <typename... Ts>
+    requires (sizeof...(Ts) == n && ((std::is_same_v<T, Ts>), ...))
+    explicit Vector(Ts... values) {
+        int index = 0;
+        ((this->values[index++] = values), ...);
+    }
 
+    [[nodiscard]]
+    T operator[](int const i) const { return values[i]; }
+    [[nodiscard]]
+    T& operator[](int const i) { return values[i]; }
+    [[nodiscard]]
+    T operator[](Axis const coord) const { return values[coord]; }
+    [[nodiscard]]
+    T& operator[](Axis const coord) { return values[coord]; }
+
+    Vector operator+(Vector const& target) const {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = this->values[i] + target[i];
+        return out;
+    }
+
+    Vector operator-() const {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = -this[i];
+        return out;
+    }
+
+    Vector operator-(Vector const& target) const {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = this->values[i] - target[i];
+        return out;
+    }
+
+    T* get_data() { return values; }
+
+protected:
     T values[n];
 };
 
+template <typename T>
+using Vector2 = Vector<T, 2>;
 
 template <typename T>
-class Vector2 : public Vector<T, 2>
-{
-public:
-    Vector2() : Vector<T, 2>() { }
-    Vector2(T x, T y)
-    {
-        T values[] = { x, y };
-        this->fill(values);
-    }
-};
-
+using Vector3 = Vector<T, 3>;
 
 template <typename T>
-class Vector3 : public Vector<T, 3>
-{
-public:
-    Vector3() : Vector<T, 3>() { }
-    Vector3(T x, T y, T z)
-    {
-        T values[] = { x, y, z };
-        this->fill(values);
-    }
-};
-
-
-template <typename T>
-class Vector4 : public Vector<T, 4>
-{
-public:
-    Vector4() : Vector<T, 4>() { }
-    Vector4(T x, T y, T z, T w)
-    {
-        T values[] = { x, y, z, w };
-        this->fill(values);
-    }
-};
+using Vector4 = Vector<T, 4>;
 
 #endif //VECTOR_H

@@ -1,5 +1,5 @@
 //
-// Created by Alfie on 01/01/2025.
+// Contributors: Alfie
 //
 
 #ifndef SHADER_H

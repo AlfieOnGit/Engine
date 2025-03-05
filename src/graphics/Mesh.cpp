@@ -1,5 +1,5 @@
 //
-// Created by Alfie on 02/01/2025.
+// Contributors: Alfie
 //
 
 #include "Mesh.h"
