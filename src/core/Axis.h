@@ -26,6 +26,7 @@ inline Axis operator--(Axis& axis, int) {
     return axis = static_cast<Axis>((static_cast<int>(axis) - 1 + 4) % 4);
 }
 
+
 inline void print(Axis const& axis) { std::cout << static_cast<int>(axis); }
 
 #endif //AXIS_H
