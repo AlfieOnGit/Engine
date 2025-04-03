@@ -5,7 +5,7 @@
 #ifndef EVENTLISTENER_H
 #define EVENTLISTENER_H
 
-template <EventType E> class EventListener
+template <typename E> class EventListener
 {
 public:
     virtual ~EventListener() = default;
