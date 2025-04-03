@@ -27,7 +27,7 @@ void GraphicsEngine2D::update()
     for (const Mesh* m : objects.get_values())
     {
         glUniform4fv(glGetUniformLocation(shader->get_program(), "colour"),
-            1, m->get_colour().get_data());
+            1, m->get_colour().get_array());
         m->draw();
     }
     glfwSwapBuffers(window);
