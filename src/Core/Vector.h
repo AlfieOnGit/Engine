@@ -4,16 +4,10 @@
 
 #ifndef VECTOR_H
 #define VECTOR_H
+
 #include <cstdint>
 
-enum Axis
-{
-    x,
-    y,
-    z,
-    w
-};
-
+#include "Axis.h"
 
 template <typename T, uint32_t n>
 class Vector

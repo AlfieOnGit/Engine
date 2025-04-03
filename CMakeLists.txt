@@ -27,6 +27,7 @@ add_executable(Engine main.cpp
         src/Graphics/2D/GraphicsEngine2D.h
         src/Graphics/GraphicsEngine.cpp
         src/Graphics/GraphicsEngine.h
+        src/Core/Axis.h
 )
 
 add_subdirectory(Dependencies/src/glfw-3.4)
