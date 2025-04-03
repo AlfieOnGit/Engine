@@ -24,12 +24,11 @@ public:
 
 protected:
     int vertex_count = 0;
-    Vector3<GLfloat>* vertices = nullptr;
+    GLfloat* vertices = nullptr;
     GLuint array_object = 0;
     GLuint buffer_object = 0;
 
     Vector4<float> colour = Vector4<float>();
-    Vector2<float>* texture_coords = nullptr;
 };
 
 #endif //MESH_H
