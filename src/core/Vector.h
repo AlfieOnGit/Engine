@@ -32,15 +32,15 @@ public:
     [[nodiscard]]
     T& operator[](Axis const coord) { return values[coord]; }
 
-    Vector operator+(Vector const& target) const {
-        Vector out;
-        for (int i = 0; i < n; i++) out[i] = this->values[i] + target[i];
-        return out;
-    }
-
     Vector operator-() const {
         Vector out;
         for (int i = 0; i < n; i++) out[i] = -this[i];
+        return out;
+    }
+
+    Vector operator+(Vector const& target) const {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = this->values[i] + target[i];
         return out;
     }
 
@@ -50,7 +50,26 @@ public:
         return out;
     }
 
-    T* get_data() { return values; }
+    Vector operator*(Vector const& target) const
+    {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = this->values[i] * target[i];
+        return out;
+    }
+
+    Vector operator/(Vector const& target) const
+    {
+        Vector out;
+        for (int i = 0; i < n; i++) out[i] = this->values[i] / target[i];
+        return out;
+    }
+
+    Vector& operator+=(Vector const& target) { return this = this + target; }
+    Vector& operator-=(Vector const& target) { return this = this - target; }
+    Vector& operator*=(Vector const& target) { return this = this * target; }
+    Vector& operator/=(Vector const& target) { return this = this / target; }
+
+    T* get_array() { return values; }
 
 protected:
     T values[n];
