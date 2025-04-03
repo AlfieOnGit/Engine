@@ -6,7 +6,7 @@
 #define CHATEVENT_H
 #include <string>
 
-#include "../../src/Event/Event.h"
+#include "../../src/Event/CancellableEvent.h"
 
 class ChatEvent : public CancellableEvent
 {
