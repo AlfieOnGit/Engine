@@ -22,15 +22,14 @@ Mesh::~Mesh()
 // TODO: More ways to generate meshes
 
 
-Mesh *Mesh::generate_triangle(Vector3<float> vert1, Vector3<float> vert2, Vector3<float> vert3)
+Mesh *Mesh::generate_triangle(Vector3<float> const vert1, Vector3<float> const vert2, Vector3<float> const vert3)
 {
     auto* out = new Mesh();
 
-    out->vertex_count = 9;
-    out->vertices = new GLfloat[9];
-    for (int i = 0; i < 3; i++) out->vertices[i] = vert1[i];
-    for (int i = 0; i < 3; i++) out->vertices[i + 3] = vert2[i];
-    for (int i = 0; i < 3; i++) out->vertices[i + 6] = vert3[i];
+    out->vertex_count = 3;
+    out->vertices = new Vector3<GLfloat>[] { vert1, vert2, vert3 };
+
+    out->texture_coords = new Vector2<float>[] { Vector2(0.5f, 0.0f), Vector2(1.0f, 1.0f), Vector2(0.0f, 1.0f) };
 
     out->fill_buffer();
 
@@ -41,7 +40,7 @@ Mesh *Mesh::generate_triangle(Vector3<float> vert1, Vector3<float> vert2, Vector
 void Mesh::draw() const
 {
     glBindVertexArray(array_object);
-    glDrawArrays(GL_TRIANGLES, 0, vertex_count);
+    glDrawArrays(GL_TRIANGLES, 0, vertex_count * 3);
 }
 
 
@@ -49,7 +48,7 @@ void Mesh::fill_buffer() const
 {
     glBindVertexArray(array_object);
     glBindBuffer(GL_ARRAY_BUFFER, buffer_object);
-    glBufferData(GL_ARRAY_BUFFER, vertex_count * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertex_count * 3 * sizeof(GLfloat), vertices->get_data(), GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
     glEnableVertexAttribArray(0);

@@ -22,6 +22,8 @@ protected:
     bool valid = false;
 
     bool set_up_glad() const;
+
+    static void texture_set_repeating(GLuint texture, bool repeating);
 };
 
 #endif //GRAPHICSENGINE_H
