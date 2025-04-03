@@ -1,12 +1,12 @@
 //
-// Created by Alfie on 02/01/2025.
+// Contributors: Alfie
 //
 
 #ifndef MESH_H
 #define MESH_H
 #include <glad/glad.h>
 
-#include "../Core/Vector.h"
+#include "../core/Vector.h"
 
 class Mesh {
 public:

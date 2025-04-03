@@ -1,11 +1,11 @@
 //
-// Created by Alfie on 01/01/2025.
+// Contributors: Alfie
 //
 
 #ifndef SHADER_H
 #define SHADER_H
 
-#define SHADERDIR "../Shaders/"
+#define SHADERDIR "../shaders/"
 
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"

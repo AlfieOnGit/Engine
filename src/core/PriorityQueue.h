@@ -1,5 +1,5 @@
 //
-// Created by Alfie on 24/12/2024.
+// Contributors: Alfie
 //
 
 #ifndef PRIORITYQUEUE_H
@@ -20,7 +20,10 @@ public:
     [[nodiscard]] unsigned int get_length() const { return vec.size(); }
 
 protected:
+    // Array of ints that work as pointers to positions on the vector representing the first position of each priority
     unsigned short int* priority_pointers;
+
+    // Vector that holds all values
     std::vector<T> vec;
 };
 

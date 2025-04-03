@@ -1,16 +1,17 @@
 //
-// Created by Alfie on 24/12/2024.
+// Contributors: Alfie
 //
 
 #ifndef EVENTPRIORITY_H
 #define EVENTPRIORITY_H
+
 #include <cstdint>
 
 enum EventPriority : uint8_t
 {
-    MONITOR,
+    MONITOR, // Events should NOT be cancelled or edited when listened to using this priority
     LATE,
-    NORMAL,
+    DEFAULT,
     EARLY
 };
 

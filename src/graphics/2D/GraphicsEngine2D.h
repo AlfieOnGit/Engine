@@ -1,5 +1,5 @@
 //
-// Created by Alfie on 02/01/2025.
+// Contributors: Alfie
 //
 
 #ifndef GRAPHICSENGINE2D_H
@@ -10,7 +10,7 @@
 #include "../GraphicsEngine.h"
 #include "../Mesh.h"
 #include "../Shader.h"
-#include "../../Core/PriorityQueue.h"
+#include "../../core/PriorityQueue.h"
 
 class GraphicsEngine2D : public GraphicsEngine {
 public:

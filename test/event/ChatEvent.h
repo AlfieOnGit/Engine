@@ -1,19 +1,19 @@
 //
-// Created by Alfie on 20/12/2024.
+// Contributors: Alfie
 //
 
 #ifndef CHATEVENT_H
 #define CHATEVENT_H
 #include <string>
 
-#include "../../src/Event/CancellableEvent.h"
+#include "../../src/event/CancellableEvent.h"
 
 class ChatEvent : public CancellableEvent
 {
 public:
     explicit ChatEvent(const std::string& message) { this->message = message; }
 
-    std::string get_message() { return message; }
+    [[nodiscard]] std::string get_message() const { return message; }
 
 protected:
     std::string message;

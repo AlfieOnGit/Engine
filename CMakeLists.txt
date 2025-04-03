@@ -3,34 +3,27 @@ project(Engine)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include_directories(Dependencies/include)
+file(GLOB_RECURSE Headers CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/src/*.h")
+file(GLOB_RECURSE Sources CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/src/*.cpp")
 
 add_executable(Engine main.cpp
-        Dependencies/src/glad/glad.c
-        src/Core/PriorityQueue.h
-        src/Event/CancellableEvent.h
-        src/Event/Event.h
-        src/Event/EventListener.h
-        src/Event/EventManager.h
-        src/Event/EventPriority.h
-        src/Graphics/Shader.cpp
-        src/Graphics/Shader.h
-        Test/Event/ChatEvent.h
-        Test/Event/Game.cpp
-        Test/Event/Game.h
-        Test/Event/TestListener.cpp
-        Test/Event/TestListener.h
-        src/Graphics/Mesh.cpp
-        src/Graphics/Mesh.h
-        src/Core/Vector.h
-        src/Graphics/2D/GraphicsEngine2D.cpp
-        src/Graphics/2D/GraphicsEngine2D.h
-        src/Graphics/GraphicsEngine.cpp
-        src/Graphics/GraphicsEngine.h
+        ${Headers}
+        ${Sources}
 )
 
-add_subdirectory(Dependencies/src/glfw-3.4)
-target_link_libraries(Engine glfw)
+# Share includes with the whole project
+include_directories(dependencies/include)
 
+add_library(glad STATIC dependencies/src/glad/glad.c)
+
+# Include necessary directories
+target_include_directories(Engine PRIVATE src)
+
+# Add GLFW subdirectory
+add_subdirectory(dependencies/src/glfw-3.4)
+
+# Check that OpenGL is present
 find_package(OpenGL REQUIRED)
-target_link_libraries(Engine OpenGL::GL)
+
+# Link GLFW, GLAD, and OpenGL to the target
+target_link_libraries(Engine glfw glad OpenGL::GL)
