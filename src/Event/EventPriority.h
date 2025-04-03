@@ -1,5 +1,5 @@
 //
-// Contributors: Alfie
+// Created by Alfie on 24/12/2024.
 //
 
 #ifndef EVENTPRIORITY_H

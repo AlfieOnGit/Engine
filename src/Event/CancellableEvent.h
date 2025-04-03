@@ -1,5 +1,5 @@
 //
-// Contributors: Alfie
+// Created by Alfie on 30/12/2024.
 //
 
 #ifndef CANCELLABLEEVENT_H
