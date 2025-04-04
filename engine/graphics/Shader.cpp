@@ -5,6 +5,7 @@
 #include<fstream>
 #include "Shader.h"
 
+#include <filesystem>
 #include <iostream>
 
 Shader::Shader(const std::string& vertex_source, const std::string& fragment_source)

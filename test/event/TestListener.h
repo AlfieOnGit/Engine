@@ -5,7 +5,7 @@
 #ifndef TESTLISTENER_H
 #define TESTLISTENER_H
 #include "ChatEvent.h"
-#include "../../src/event/EventListener.h"
+#include "event/EventListener.h"
 
 class TestListener : public EventListener<ChatEvent>
 {

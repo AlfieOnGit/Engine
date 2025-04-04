@@ -5,7 +5,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include "ChatEvent.h"
-#include "../../src/event/EventListener.h"
+#include "event/EventListener.h"
 
 
 class Game final : public EventListener<ChatEvent>

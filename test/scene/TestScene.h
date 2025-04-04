@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "../../src/scene/Scene.h"
+#include "scene/Scene.h"
 
 class TestScene final : public Scene {
 public:

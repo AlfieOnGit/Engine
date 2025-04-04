@@ -5,7 +5,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#define SHADERDIR "../shaders/"
+#define SHADERDIR PROJECTDIR"/shaders/"
 
 #include <glad/glad.h>
 #include "GLFW/glfw3.h"

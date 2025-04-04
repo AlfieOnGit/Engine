@@ -3,7 +3,7 @@
 //
 
 #include "TestScene.h"
-#include "../../src/scene/SceneManager.h"
+#include "scene/SceneManager.h"
 
 namespace SceneTest {
 

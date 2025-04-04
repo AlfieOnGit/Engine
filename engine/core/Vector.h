@@ -14,7 +14,7 @@ template <typename T, uint8_t n>
 class Vector
 {
 public:
-    Vector() = default;
+    Vector() { for (int i = 0; i < n; i++) values[i] = T(); }
 
     template <typename... Ts>
     requires (sizeof...(Ts) == n && ((std::is_same_v<T, Ts>), ...))
