@@ -23,6 +23,8 @@ public:
         ((this->values[index++] = values), ...);
     }
 
+    Vector(Vector const& vec) { *this = vec; }
+
     [[nodiscard]]
     T operator[](int const i) const { return values[i]; }
     [[nodiscard]]
@@ -31,6 +33,12 @@ public:
     T operator[](Axis const coord) const { return values[coord]; }
     [[nodiscard]]
     T& operator[](Axis const coord) { return values[coord]; }
+
+    Vector& operator=(Vector const& vec)
+    {
+        for (int i = 0; i < n; i++) (*this)[i] = vec[i];
+        return *this;
+    }
 
     Vector operator-() const {
         Vector out;
@@ -69,6 +77,14 @@ public:
     Vector& operator*=(Vector const& target) { return this = this * target; }
     Vector& operator/=(Vector const& target) { return this = this / target; }
 
+    Vector<T, n + 1> operator<<(T target)
+    {
+        Vector<T, n + 1> out;
+        for (int i = 0; i < n; i++) out[i] = (*this)[i];
+        out[n] = target;
+        return out;
+    }
+
     T* get_array() { return values; }
 
 protected:
@@ -83,5 +99,17 @@ using Vector3 = Vector<T, 3>;
 
 template <typename T>
 using Vector4 = Vector<T, 4>;
+
+
+namespace Vectors
+{
+    template <typename T, uint8_t n>
+    Vector<T, n> axis(Axis const axis)
+    {
+        Vector<T, n> out;
+        out[axis] = T(1);
+        return out;
+    }
+}
 
 #endif //VECTOR_H
