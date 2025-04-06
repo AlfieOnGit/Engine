@@ -62,7 +62,7 @@ Vector<T, n> Matrix<T, n, m>::operator*(Vector<T, n> const& vec) const
 namespace Matrices
 {
     template <typename T, uint8_t n>
-    Matrix<T, n, n> get_identity()
+    Matrix<T, n, n> identity()
     {
         Matrix<T, n, n> out;
         for (int i = 0; i < n; i++) out[i][i] = T(1);
