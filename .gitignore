@@ -48,8 +48,8 @@ _deps
 *.app
 
 # IDE specific
-.idea/
-.vs/
+/.idea/
+/.vs/
 *.code-workspace
 *.ninja
 build.ninja
