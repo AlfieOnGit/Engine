@@ -68,6 +68,30 @@ namespace Matrices
         for (int i = 0; i < n; i++) out[i][i] = T(1);
         return out;
     }
+
+    template <typename T>
+    Matrix<T, 4, 4> rotation(T const radians, Vector3<T> const axis)
+    {
+        Matrix<T, 4, 4> out = identity<T, 4>();
+
+        float const c = cos(radians);
+        float const s = sin(radians);
+        float const omc = 1 - c;
+
+        out[0][0] = axis[x] * axis[x] * omc + c;
+        out[0][1] = axis[x] * axis[y] * omc + axis[z] * s;
+        out[0][2] = axis[x] * axis[z] * omc - axis[y] * s;
+
+        out[1][0] = axis[y] * axis[x] * omc - axis[z] * s;
+        out[1][1] = axis[y] * axis[y] * omc + c;
+        out[1][2] = axis[y] * axis[z] * omc + axis[x] * s;
+
+        out[2][0] = axis[z] * axis[x] * omc + axis[y] * s;
+        out[2][1] = axis[z] * axis[y] * omc - axis[x] * s;
+        out[2][2] = axis[z] * axis[z] * omc + c;
+
+        return out;
+    }
 }
 
 #endif //MATRIX_H
