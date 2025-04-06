@@ -69,8 +69,9 @@ namespace Matrices
         return out;
     }
 
+
     template <typename T>
-    Matrix<T, 4, 4> rotation(T const radians, Vector3<T> const axis)
+    Matrix<T, 4, 4> rotation(T const radians, Vector3<T> const& axis)
     {
         Matrix<T, 4, 4> out = identity<T, 4>();
 
@@ -90,6 +91,24 @@ namespace Matrices
         out[2][1] = axis[z] * axis[y] * omc - axis[x] * s;
         out[2][2] = axis[z] * axis[z] * omc + c;
 
+        return out;
+    }
+
+
+    template <typename T>
+    Matrix<T, 4, 4> scale(Vector<T, 3> const& vec)
+    {
+        Matrix<T, 4, 4> out;
+        for (int i = 0; i < 3; i++) out[i][i] = vec[i];
+        return out;
+    }
+
+
+    template <typename T>
+    Matrix<T, 4, 4> translation(Vector<T, 3> const& vec)
+    {
+        Matrix<T, 4, 4> out;
+        for (int i = 0; i < 3; i++) out[3][i] = vec[i];
         return out;
     }
 }
