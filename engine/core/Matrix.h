@@ -28,6 +28,7 @@ public:
     [[nodiscard]] Matrix operator+(Matrix const& target) const { return Matrix(this->Vector<Vector<T, m>, n>::operator+(target)); }
     [[nodiscard]] Matrix operator-(Matrix const& target) const { return Matrix(this->Vector<Vector<T, m>, n>::operator-(target)); }
     [[nodiscard]] Matrix operator*(Matrix const& target) const;
+    [[nodiscard]] Vector<T, n> operator*(Vector<T, n> const& vec) const;
 
     Matrix& operator+=(Matrix const& target) { return *this = *this + target; }
     Matrix& operator-=(Matrix const& target) { return *this = *this - target; }
@@ -44,6 +45,16 @@ Matrix<T, n, m> Matrix<T, n, m>::operator*(Matrix const &target) const
     Matrix out = Matrix();
     for (int i = 0; i < n; i++) for (int j = 0; j < m; j++)
         for (int k = 0; k < n; k++) out.values[i][j] += (*this)[k][j] * target[i][k];
+    return out;
+}
+
+
+template<typename T, uint8_t n, uint8_t m>
+Vector<T, n> Matrix<T, n, m>::operator*(Vector<T, n> const& vec) const
+{
+    auto out = Vector<T, n>();
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++) out[i] += vec[i] * (*this)[i][j];
     return out;
 }
 
