@@ -11,17 +11,17 @@
 
 class TestScene final : public Scene {
 public:
-    explicit TestScene(std::pmr::string const& message) { this->message = message; }
+    explicit TestScene(std::string const& message) { this->message = message; }
 
     void on_load() override;
     void update(float dt) override;
     void on_unload() override;
 
     [[nodiscard]]
-    std::pmr::string get_message() { return message; }
+    std::string get_message() { return message; }
 
 protected:
-    std::pmr::string message;
+    std::string message;
 };
 
 #endif //TESTSCENE_H
