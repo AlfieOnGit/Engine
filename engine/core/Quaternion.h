@@ -11,6 +11,7 @@ class Quaternion : protected Vector<float, 4>
 public:
     Quaternion() : Vector(0.0f, 0.0f, 0.0f, 1.0f) { }
     Quaternion(float const x, float const y, float const z, float const w) : Vector(x, y, z, w) { }
+    Quaternion(Quaternion const& quat) : Vector(quat[x], quat[y], quat[z], quat[w]) { }
     explicit Quaternion(Vector const& vec) : Vector(vec) { }
 
     [[nodiscard]]
