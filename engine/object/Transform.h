@@ -4,8 +4,8 @@
 
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
-#include "../core/Quaternion.h"
-#include "../core/Vector.h"
+
+#include "../core/Matrix.h"
 
 class Transform
 {
@@ -25,9 +25,20 @@ public:
     void set_scale(Vector3<float> const& scale) { this->scale = scale; }
 
 protected:
-    Vector3<float> displacement;
+    Vector3<float> displacement; // AKA: The "local position"
     Quaternion orientation;
     Vector3<float> scale;
 };
+
+
+namespace Matrices
+{
+    inline Matrix<float, 4, 4> model(Transform const& transform)
+    {
+        return translation(transform.get_displacement())
+            * rotation(transform.get_orientation())
+            * scale(transform.get_scale());
+    }
+}
 
 #endif //TRANSFORM_H

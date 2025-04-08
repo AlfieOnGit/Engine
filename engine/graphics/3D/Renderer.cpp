@@ -24,10 +24,7 @@ void Renderer::update()
     {
         Transform& t = o->get_transform();
 
-        auto model_matrix =
-            Matrices::translation(t.get_displacement())
-            * Matrices::rotation(t.get_orientation())
-            * Matrices::scale(t.get_scale());
+        auto model_matrix = Matrices::model(t);
 
         glUniformMatrix4fv(glGetUniformLocation(shader->get_program(), "model_matrix"),
             1, false, model_matrix.get_array());
