@@ -15,7 +15,7 @@ class Matrix : protected Vector<Vector<T, m>, n>
 public:
     explicit Matrix(const bool is_identity = true)
     {
-        if (is_identity) for (int i = 0; i < n; i++) (*this)[i][i] = T(1);
+        if (is_identity && m == n) for (int i = 0; i < n; i++) (*this)[i][i] = T(1);
     }
 
     Matrix(Matrix const& mat) { *this = mat; }
