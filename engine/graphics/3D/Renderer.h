@@ -5,10 +5,10 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 #include "../GraphicsEngine.h"
-#include "../Mesh.h"
 #include "../Shader.h"
 #include "../../core/Matrix.h"
 #include "../../core/PriorityQueue.h"
+#include "../../object/GameObject.h"
 
 #define MAX_DEPTH 5
 
@@ -18,10 +18,12 @@ public:
 
     void update() override;
 
+    void add_object(GameObject* object) { objects.push_back(object); }
+
 private:
     Shader* shader = nullptr;
 
-    PriorityQueue<Mesh*> objects = PriorityQueue<Mesh*>(MAX_DEPTH);
+    std::vector<GameObject*> objects;
 
     Matrix<float, 4, 4> projection_matrix, view_matrix;
 };
