@@ -6,6 +6,7 @@
 #define MATRIX_H
 #include <cstdint>
 
+#include "Quaternion.h"
 #include "Vector.h"
 
 template <typename T, uint8_t n, uint8_t m>
@@ -18,7 +19,7 @@ public:
 
     Matrix& operator=(Matrix const& mat)
     {
-        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) this->values[i][j] = mat.values[i][j];
+        for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) (*this)[i][j] = mat[i][j];
         return *this;
     }
 
@@ -33,6 +34,8 @@ public:
     Matrix& operator+=(Matrix const& target) { return *this = *this + target; }
     Matrix& operator-=(Matrix const& target) { return *this = *this - target; }
     Matrix& operator*=(Matrix const& target) { return *this = *this * target; }
+
+    T* get_array() { return this->values[0].get_array(); }
 
 private:
     explicit Matrix(Vector<Vector<T, m>, n> vec) { for (int i = 0; i < n; i++) this->values[i] = vec[i]; }
@@ -54,7 +57,7 @@ Vector<T, n> Matrix<T, n, m>::operator*(Vector<T, n> const& vec) const
 {
     auto out = Vector<T, n>();
     for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++) out[i] += vec[i] * (*this)[i][j];
+        for (int j = 0; j < m; j++) out[j] += vec[i] * (*this)[i][j];
     return out;
 }
 
@@ -69,6 +72,60 @@ namespace Matrices
         return out;
     }
 
+
+    template <typename T>
+    Matrix<T, 4, 4> orthographic(Vector<T, 3> const& min, Vector<T, 3> const& max)
+    {
+        Matrix<T, 4, 4> out;
+
+        for (int i = 0; i < 3; i++)
+        {
+            out[i][i] = 2 / (max[i] - min[i]);
+            out[3][i] = -(max[i] + min[i]) / (max[i] - min[i]);
+        }
+        out[2][2] *= -1;
+        out[3][3] = T(1);
+
+        return out;
+    }
+
+
+    template <typename T>
+    Matrix<T, 4, 4> perspective(T near_z, T far_z, T fov, T aspect)
+    {
+        Matrix<T, 4, 4> out;
+
+        T const f = 1 / tan(fov / 2);
+
+        out[0][0] = f / aspect;
+        out[1][1] = f;
+        out[2][2] = (near_z + far_z) / (near_z - far_z);
+        out[2][3] = -1;
+        out[3][2] = (2 * near_z * far_z) / (near_z - far_z);
+
+        return out;
+    }
+
+
+    template <typename T>
+    Matrix<float, 4, 4> rotation(Quaternion const& quat)
+    {
+        Matrix<T, 4, 4> out;
+
+        out[0][0] = 1 - 2 * (quat[y] * quat[y] + quat[z] * quat[z]);
+        out[0][1] = 2 * (quat[x] * quat[y] + quat[z] * quat[w]);
+        out[0][2] = 2 * (quat[x] * quat[z] - quat[y] * quat[w]);
+
+        out[1][0] = 2 * (quat[x] * quat[y] - quat[z] * quat[w]);
+        out[1][1] = 1 - 2 * (quat[x] * quat[x] + quat[z] * quat[z]);
+        out[1][2] = 2 * (quat[y] * quat[z] + quat[x] * quat[w]);
+
+        out[2][0] = 2 * (quat[x] * quat[z] + quat[y] * quat[w]);
+        out[2][1] = 2 * (quat[y] * quat[z] - quat[x] * quat[w]);
+        out[2][2] = 1 - 2 * (quat[x] * quat[x] + quat[y] * quat[y]);
+
+        return out;
+    }
 
     template <typename T>
     Matrix<T, 4, 4> rotation(T const radians, Vector3<T> const& axis)
