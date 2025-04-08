@@ -13,7 +13,10 @@ template <typename T, uint8_t n, uint8_t m>
 class Matrix : protected Vector<Vector<T, m>, n>
 {
 public:
-    Matrix() = default;
+    explicit Matrix(const bool is_identity = true)
+    {
+        if (is_identity) for (int i = 0; i < n; i++) (*this)[i][i] = T(1);
+    }
 
     Matrix(Matrix const& mat) { *this = mat; }
 
@@ -37,6 +40,8 @@ public:
 
     T* get_array() { return this->values[0].get_array(); }
 
+    void print() const;
+
 private:
     explicit Matrix(Vector<Vector<T, m>, n> vec) { for (int i = 0; i < n; i++) this->values[i] = vec[i]; }
 };
@@ -45,7 +50,7 @@ private:
 template<typename T, uint8_t n, uint8_t m>
 Matrix<T, n, m> Matrix<T, n, m>::operator*(Matrix const &target) const
 {
-    Matrix out = Matrix();
+    Matrix out = Matrix(false);
     for (int i = 0; i < n; i++) for (int j = 0; j < m; j++)
         for (int k = 0; k < n; k++) out.values[i][j] += (*this)[k][j] * target[i][k];
     return out;
@@ -62,17 +67,23 @@ Vector<T, n> Matrix<T, n, m>::operator*(Vector<T, n> const& vec) const
 }
 
 
+template<typename T, uint8_t n, uint8_t m>
+void Matrix<T, n, m>::print() const
+{
+    std::cout << "[MATRIX]\n";
+    for (int y = 0; y < m; y++)
+    {
+        for (int x = 0; x < n; x++)
+        {
+            std::cout << this->values[x][y] << ' ';
+        }
+        std::cout << '\n';
+    }
+}
+
+
 namespace Matrices
 {
-    template <typename T, uint8_t n>
-    Matrix<T, n, n> identity()
-    {
-        Matrix<T, n, n> out;
-        for (int i = 0; i < n; i++) out[i][i] = T(1);
-        return out;
-    }
-
-
     template <typename T>
     Matrix<T, 4, 4> orthographic(Vector<T, 3> const& min, Vector<T, 3> const& max)
     {
@@ -84,7 +95,6 @@ namespace Matrices
             out[3][i] = -(max[i] + min[i]) / (max[i] - min[i]);
         }
         out[2][2] *= -1;
-        out[3][3] = T(1);
 
         return out;
     }
@@ -107,10 +117,9 @@ namespace Matrices
     }
 
 
-    template <typename T>
-    Matrix<float, 4, 4> rotation(Quaternion const& quat)
+    inline Matrix<float, 4, 4> rotation(Quaternion const& quat)
     {
-        Matrix<T, 4, 4> out;
+        Matrix<float, 4, 4> out;
 
         out[0][0] = 1 - 2 * (quat[y] * quat[y] + quat[z] * quat[z]);
         out[0][1] = 2 * (quat[x] * quat[y] + quat[z] * quat[w]);
@@ -130,7 +139,7 @@ namespace Matrices
     template <typename T>
     Matrix<T, 4, 4> rotation(T const radians, Vector3<T> const& axis)
     {
-        Matrix<T, 4, 4> out = identity<T, 4>();
+        Matrix<T, 4, 4> out;
 
         float const c = cos(radians);
         float const s = sin(radians);
