@@ -42,7 +42,7 @@ public:
 
     Vector operator-() const {
         Vector out;
-        for (int i = 0; i < n; i++) out[i] = -this[i];
+        for (int i = 0; i < n; i++) out[i] = -this->values[i];
         return out;
     }
 
@@ -87,9 +87,20 @@ public:
 
     T* get_array() { return values; }
 
+    void print() const;
+
 protected:
     T values[n];
 };
+
+template <typename T, uint8_t n>
+void Vector<T, n>::print() const
+{
+    std::cout << "[VECTOR]\n";
+    for (int i = 0; i < n; i++) std::cout << values[i] << ' ';
+    std::cout << '\n';
+}
+
 
 template <typename T>
 using Vector2 = Vector<T, 2>;
