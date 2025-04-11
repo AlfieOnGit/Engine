@@ -4,6 +4,7 @@
 
 #ifndef RENDERER_H
 #define RENDERER_H
+#include "../Camera.h"
 #include "../GraphicsEngine.h"
 #include "../Shader.h"
 #include "../../core/Matrix.h"
@@ -22,6 +23,8 @@ public:
 
 private:
     Shader* shader = nullptr;
+
+    Camera* camera;
 
     std::vector<GameObject*> objects;
 
