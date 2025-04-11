@@ -6,19 +6,22 @@
 
 void Camera::update(float dt)
 {
-    // TODO: Remove
-    // TODO: Movement needs to be based around the orientation of the camera, (I.E. forwards isn't always -Z)
+    // TODO: Replace with better, more abstract, system. Anyway, not gonna do that for a while while I work out graphics
     float constexpr speed = 0.01f;
     auto const turn = Quaternion(0.0f, 0.0043633, 0.0f, 0.9999905);
 
-    if (glfwGetKey(window, GLFW_KEY_W)) displacement[z] -= speed;
-    if (glfwGetKey(window, GLFW_KEY_S)) displacement[z] += speed;
-    if (glfwGetKey(window, GLFW_KEY_A)) displacement[x] -= speed;
-    if (glfwGetKey(window, GLFW_KEY_D)) displacement[x] += speed;
-    if (glfwGetKey(window, GLFW_KEY_SPACE)) displacement[y] += speed;
-    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) displacement[y] -= speed;
-    if (glfwGetKey(window, GLFW_KEY_LEFT)) orientation = orientation * turn.get_conjugate();
-    if (glfwGetKey(window, GLFW_KEY_RIGHT)) orientation = orientation * turn;
+    auto move = Vector3<float>(); // Change in displacement in this frame
+
+    if (glfwGetKey(window, GLFW_KEY_W)) move[z] -= speed;
+    if (glfwGetKey(window, GLFW_KEY_S)) move[z] += speed;
+    if (glfwGetKey(window, GLFW_KEY_A)) move[x] -= speed;
+    if (glfwGetKey(window, GLFW_KEY_D)) move[x] += speed;
+    if (glfwGetKey(window, GLFW_KEY_SPACE)) move[y] += speed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) move[y] -= speed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT)) orientation = orientation * turn;
+    if (glfwGetKey(window, GLFW_KEY_RIGHT)) orientation = orientation * turn.get_conjugate();
+
+    displacement += orientation * move;
 }
 
 
