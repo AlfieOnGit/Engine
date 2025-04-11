@@ -72,10 +72,10 @@ public:
         return out;
     }
 
-    Vector& operator+=(Vector const& target) { return this = this + target; }
-    Vector& operator-=(Vector const& target) { return this = this - target; }
-    Vector& operator*=(Vector const& target) { return this = this * target; }
-    Vector& operator/=(Vector const& target) { return this = this / target; }
+    Vector& operator+=(Vector const& target) { return *this = *this + target; }
+    Vector& operator-=(Vector const& target) { return *this = *this - target; }
+    Vector& operator*=(Vector const& target) { return *this = *this * target; }
+    Vector& operator/=(Vector const& target) { return *this = *this / target; }
 
     Vector<T, n + 1> operator<<(T target)
     {
