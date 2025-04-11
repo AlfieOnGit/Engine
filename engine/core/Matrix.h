@@ -94,8 +94,7 @@ namespace Matrices
             out[i][i] = 2 / (max[i] - min[i]);
             out[3][i] = -(max[i] + min[i]) / (max[i] - min[i]);
         }
-        out[2][2] *= -1;
-
+        out[2][2] *= T(-1);
         return out;
     }
 
