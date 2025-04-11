@@ -15,10 +15,7 @@
 class Camera {
 public:
     explicit Camera(GLFWwindow& window, Vector3<float> const& displacement = Vector3<float>(), Quaternion const& orientation = Quaternion())
-        : window(&window), displacement(displacement), orientation(orientation)
-    {
-        //glfwSetKeyCallback(this->window, Camera::update); // TODO: make this work
-    }
+        : window(&window), displacement(displacement), orientation(orientation) { }
 
     void update(float dt);
 
