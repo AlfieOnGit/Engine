@@ -8,10 +8,23 @@ Renderer::Renderer()
 {
     shader = new Shader(SHADERDIR"3DVert.glsl", SHADERDIR"2DFrag.glsl");
     if (!shader->is_valid()) return;
+
+    int width, height;
+    glfwGetWindowSize(window, &width, &height);
+    auto const flt_width = static_cast<float>(width);
+    auto const flt_height = static_cast<float>(height);
+    std::cout << "Width: " << flt_width << ", height: " << flt_height << '\n';
+    auto constexpr radians = static_cast<float>(45.0f * (M_PI / 180));
+    projection_matrix = Matrices::perspective(1.0f, 100.0f, flt_width / flt_height, radians);
+
+    camera = new Camera(*window);
 }
 
 void Renderer::update()
 {
+    camera->update(0.0f);
+    view_matrix = camera->get_view_matrix();
+
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(shader->get_program());
 
