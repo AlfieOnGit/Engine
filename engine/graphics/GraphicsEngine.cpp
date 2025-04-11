@@ -5,7 +5,6 @@
 #include "GraphicsEngine.h"
 
 #include <iostream>
-#include <glad/glad.h>
 
 GraphicsEngine::GraphicsEngine()
 {

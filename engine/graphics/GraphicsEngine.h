@@ -4,7 +4,7 @@
 
 #ifndef GRAPHICSENGINE_H
 #define GRAPHICSENGINE_H
-#include "glad/glad.h" // Your IDE might tell you this isn't necessary but it is
+#include <glad/glad.h> // Your IDE might tell you this isn't necessary but it is
 #include <GLFW/glfw3.h>
 
 class GraphicsEngine {
