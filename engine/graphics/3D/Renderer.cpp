@@ -13,7 +13,6 @@ Renderer::Renderer()
     glfwGetWindowSize(window, &width, &height);
     auto const flt_width = static_cast<float>(width);
     auto const flt_height = static_cast<float>(height);
-    std::cout << "Width: " << flt_width << ", height: " << flt_height << '\n';
     auto constexpr radians = static_cast<float>(45.0f * (M_PI / 180));
     projection_matrix = Matrices::perspective(1.0f, 100.0f, flt_width / flt_height, radians);
 
