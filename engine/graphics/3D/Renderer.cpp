@@ -13,10 +13,19 @@ Renderer::Renderer()
     glfwGetWindowSize(window, &width, &height);
     auto const flt_width = static_cast<float>(width);
     auto const flt_height = static_cast<float>(height);
+
+    // PERSPECTIVE
     auto constexpr radians = static_cast<float>(45.0f * (M_PI / 180));
     projection_matrix = Matrices::perspective(1.0f, 100.0f, flt_width / flt_height, radians);
 
+    // ORTHOGRAPHIC: Remember, when using this that positions are WILDLY different from perspective
+    //projection_matrix = Matrices::orthographic(
+    //    Vector3<float>(-flt_width / 2.0f, -flt_height / 2.0f, -1.0f),
+    //    Vector3<float>(flt_width / 2.0f, flt_height / 2.0f, 10000.0f));
+
     camera = new Camera(*window);
+
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Renderer::update()
@@ -25,6 +34,7 @@ void Renderer::update()
     view_matrix = camera->get_view_matrix();
 
     glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
     glUseProgram(shader->get_program());
 
     glUniformMatrix4fv(glGetUniformLocation(shader->get_program(), "projection_matrix"),
